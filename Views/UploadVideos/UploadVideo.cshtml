@@ -1,0 +1,74 @@
+﻿@model UploadVideos
+
+@{
+    ViewData["Title"] = "Upload Videos";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   
+    <title>Upload Video</title>
+    
+    </style>
+</head>
+
+<body>
+    <div class="upload-video-form">
+        <h1>Upload Videos</h1>
+        <div class="details-container">
+            <div class="details-form">
+                <form method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="Courses">All Courses</label>
+                        <select class="form-control" asp-for="Courses">
+                            <option value="">--select--</option>
+                            @foreach (var course in ViewBag.Courses)
+                            {
+                                <option value="@course.Name">@course.Name</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TopicName">Topic Name</label>
+                        <input type="text" asp-for="TopicName" class="form-control" id="TopicName"
+                               placeholder="Enter Topic Name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="VideoFile">Upload Video</label>
+                        <input type="file" asp-for="VideoFile" class="form-control" id="VideoFile">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="YouTubeLink">Upload URL</label>
+                        <input type="text" asp-for="YouTubeLink" class="form-control" id="YouTubeLink"
+                               placeholder="Enter YouTube Link" oninput="showVideoPreview()">
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <img src="https://img.icons8.com/ios-glyphs/30/ffffff/upload.png" alt="Upload Icon">
+                            Add
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="video-preview">
+                <iframe id="videoPreview" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showVideoPreview() {
+            const link = document.getElementById('YouTubeLink').value;
+            const iframe = document.getElementById('videoPreview');
+            iframe.src = link;
+        }
+    </script>
+</body>
+
+</html>
