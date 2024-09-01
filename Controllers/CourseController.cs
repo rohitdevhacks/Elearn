@@ -30,7 +30,7 @@ namespace onl.Controllers
                 var course = new Course
                 {
                     Name = courseThumb.Name,
-                    Thumbnail = filePath, 
+                    Thumbnail = filePath,
                     Price = courseThumb.Price,
                     Description = courseThumb.Description
                 };
@@ -54,14 +54,14 @@ namespace onl.Controllers
         {
             if (id.HasValue)
             {
-                
+
                 var course = db.Courses.FirstOrDefault(c => c.Id == id.Value);
-                
-                return View("CourseDetails", course); 
+
+                return View("CourseDetails", course);
             }
             else
             {
-               
+
                 var courses = db.Courses.ToList();
                 return View("CourseList", courses);
             }
