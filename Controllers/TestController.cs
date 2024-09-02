@@ -19,5 +19,21 @@ namespace onl.Controllers
             return View(data);
         }
 
+        public async Task<IActionResult> CourseSingle(int id)
+        {
+            var course = await db.Courses.FindAsync(id);
+
+            if (course == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return View(course);
+            }
+            
+        }
+
+
     }
 }
